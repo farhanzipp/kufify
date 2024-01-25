@@ -7,14 +7,14 @@ const Navbar = () => {
     };
 
     return (
-        <nav className='p-2 bg-cyan-900 flex justify-between items-center'>
+        <nav className='p-2 bg-teal-700 flex justify-between items-center'>
             <div className='text-white'>
                 <h1 className='font-black'>KUFIfy</h1>
             </div>
 
             <div id="navbar-default" className={`absolute right-0 top-12 sm:bg-transparent sm:relative sm:inline sm:top-0 ${isMenuOpen ? '' : 'hidden'}`}>
                     <div className='flex flex-col items-center h-full text-center sm:inline sm:w-full text-white'>
-                        <ul className='p-2 flex flex-col sm:flex-row sm:justify-center gap-4 lg:gap-12 bg-cyan-900'>
+                        <ul className='p-2 flex flex-col sm:flex-row sm:justify-center gap-4 lg:gap-12 bg-teal-700'>
                             <li>
                                 <a className="text-sm md:text-lg" href='#'>
                                     New Drawing

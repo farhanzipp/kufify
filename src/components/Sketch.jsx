@@ -1,4 +1,4 @@
-import { ReactP5Wrapper } from 'react-p5-wrapper';
+import { ReactP5Wrapper } from '@p5-wrapper/react';
 import { PropTypes } from 'prop-types';
 import { useState } from 'react';
 

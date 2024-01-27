@@ -4,12 +4,13 @@ import { drawHamza } from './utils/shapes';
 import { showBackground } from './utils/backgrounds';
 import Navbar from './components/Navbar';
 import ToggleButton from './components/ToggleButton'
+import ColorPicker from './components/ColorPicker';
 
 const App = () => {
     const sketchRef = useRef();
 
     let canvasWidthRef = useRef(350);
-    const pixelLengthRef = useRef(25);
+    const pixelLengthRef = useRef(19);
     const penSizeRef = useRef(1);
     const penTipRef = useRef("default");
     const colorRef = useRef("#333333");
@@ -161,19 +162,22 @@ const App = () => {
             <Navbar
                 newDrawingFunc={() => console.log("new draw")}
                 saveImageFunc={handleSaveImage}
+                clearDrawingFunc={handleClearDrawing}
             />
+            <div className='p-1 grid grid-flow-row gap-2'>
+                <ColorPicker setColorRef={colorRef} />
 
-            <div ref={sketchRef} className='w-fit mx-auto'></div>
+                <div ref={sketchRef} className='w-fit mx-auto'></div>
 
-            <ToggleButton />
-
-            <button onClick={handleClearDrawing}>Clr</button>
-            
-            <select onChange={handleBgChange}>
-                <option value="background1">Bg1</option>
-                <option value="background2">Bg2</option>
-                <option value="background3">Bg3</option>
-            </select>
+                <div className="grid grid-flow-col">
+                    <ToggleButton penTipRef={penTipRef} />
+                    <select onChange={handleBgChange}>
+                        <option value="background1">Bg1</option>
+                        <option value="background2">Bg2</option>
+                        <option value="background3">Bg3</option>
+                    </select>
+                </div>
+            </div>
         </>
     );
 };

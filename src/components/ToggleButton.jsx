@@ -9,16 +9,16 @@ const ToggleButton = ({ penTipRef }) => {
         if (buttonNumber === 1) {
             setPenActive(true);
             setEraserActive(false);
-            penTipRef.current ="pen"
+            penTipRef.current = "pen"
         } else {
             setPenActive(false);
             setEraserActive(true);
-            penTipRef.current ="eraser"
+            penTipRef.current = "eraser"
         }
     };
 
     return (
-        <div>
+        <div className='flex gap-2'>
             <button
                 onClick={() => handleClick(1)}
                 className={`${penActive ? 'bg-teal-900 text-white' : ''} p-1 rounded-md border-2 border-teal-900 hover:bg-teal-900 text-teal-700 hover:text-white `}
@@ -36,6 +36,10 @@ const ToggleButton = ({ penTipRef }) => {
     );
 };
 
-
+ToggleButton.propTypes = {
+    penTipRef: PropTypes.shape({
+        current: PropTypes.any,
+    }),
+};
 
 export default ToggleButton;

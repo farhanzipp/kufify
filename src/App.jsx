@@ -3,18 +3,19 @@ import p5 from 'p5';
 import { drawHamza } from './utils/shapes';
 import { showBackground } from './utils/backgrounds';
 import Navbar from './components/Navbar';
+import ToggleButton from './components/ToggleButton'
 
 const App = () => {
     const sketchRef = useRef();
 
-    const canvasWidthRef = useRef(400);
-    const pixelLengthRef = useRef(20);
+    let canvasWidthRef = useRef(350);
+    const pixelLengthRef = useRef(25);
     const penSizeRef = useRef(1);
     const penTipRef = useRef("default");
     const colorRef = useRef("#333333");
     const backgroundRef = useRef("background1");
 
-    let downloadImgFn; // Reference to the downloadImg function
+    let downloadImgFn;
     let clearDrawingFn;
 
     const Sketch = (p) => {
@@ -22,6 +23,8 @@ const App = () => {
         let pixelLength = pixelLengthRef.current;
         let penSize = penSizeRef.current;
         let pixelSize = Math.floor(canvasWidth / pixelLength);
+        // Adjust the canvas width to be an exact multiple of pixelSize
+        canvasWidth = pixelSize * pixelLength;
 
         let backgroundLayer;
         let drawingLayer;
@@ -60,8 +63,6 @@ const App = () => {
             pixelSize *= penSize;
             let col = Math.floor(x / pixelSize);
             let row = Math.floor(y / pixelSize);
-
-            if (col >= pixelLength || row >= pixelLength) return;
 
             var pixelX = col * pixelSize;
             var pixelY = row * pixelSize;
@@ -122,6 +123,27 @@ const App = () => {
         return sketchInstance.remove;
     }, []);
 
+    useEffect(() => {
+        const updateCanvasWidth = () => {
+          canvasWidthRef.current = Math.min(window.innerWidth, 500);
+          // Update canvas size
+          sketchRef.current.width = canvasWidthRef.current;
+        };
+
+        updateCanvasWidth();
+    
+        const handleResize = () => {
+          updateCanvasWidth();
+        };
+    
+        window.addEventListener('resize', handleResize);
+    
+        return () => {
+          window.removeEventListener('resize', handleResize);
+        };
+      }, [canvasWidthRef]);
+    
+
     // Allow calling downloadImg from outside
     const sketchFunctionFromOutside = (func) => {
         if (func === downloadImgFn) {
@@ -143,10 +165,7 @@ const App = () => {
 
             <div ref={sketchRef} className='w-fit mx-auto'></div>
 
-            <select onChange={handleToolChange}>
-                <option value="pen">Pen</option>
-                <option value="eraser">Eraser</option>
-            </select>
+            <ToggleButton />
 
             <button onClick={handleClearDrawing}>Clr</button>
             

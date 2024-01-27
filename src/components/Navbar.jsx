@@ -1,13 +1,13 @@
 import { useState } from 'react'
 
-const Navbar = () => {
+const Navbar = ( {newDrawingFunc , saveImageFunc }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
 
     return (
-        <nav className='p-2 bg-teal-700 flex justify-between items-center'>
+        <nav className='p-2 mb-2 bg-teal-700 flex justify-between items-center'>
             <div className='text-white'>
                 <h1 className='font-black'>KUFIfy</h1>
             </div>
@@ -16,12 +16,18 @@ const Navbar = () => {
                     <div className='flex flex-col items-center h-full text-center sm:inline sm:w-full text-white'>
                         <ul className='p-2 flex flex-col sm:flex-row sm:justify-center gap-4 lg:gap-12 bg-teal-700'>
                             <li>
-                                <a className="text-sm md:text-lg" href='#'>
-                                    New Drawing
+                                <a className="text-sm md:text-lg" 
+                                    href='#'
+                                    onClick={newDrawingFunc}
+                                >
+                                    New Draw
                                 </a>
                             </li>
                             <li>
-                                <a className="text-sm md:text-lg" href='#'>
+                                <a className="text-sm md:text-lg" 
+                                    href='#'
+                                    onClick={saveImageFunc}
+                                >
                                     Download Image
                                 </a>
                             </li>

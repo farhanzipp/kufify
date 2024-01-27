@@ -1,31 +1,31 @@
-import { ReactP5Wrapper } from '@p5-wrapper/react';
-import { PropTypes } from 'prop-types';
-import { useState } from 'react';
+/* eslint-disable react/prop-types */
+import { useRef, useEffect } from 'react';
+import p5 from 'p5';
 
-const Sketch = (props) => {
-    const { canvasWidth, pixelLength, tool, penSize, penTip, color, background } = props;
-    
+const SketchComponent = ({ canvasWidth, pixelLength, tool, penSize, penTip, color, background }) => {
+    const sketchRef = useRef();
+
     let backgroundLayer, drawingLayer;
+    const Sketch = (p) => {
 
-    const sketch = (p5) => {
-        p5.setup = () => {
-            p5.createCanvas(canvasWidth, canvasWidth);
+        p.setup = () => {
+            p.createCanvas(canvasWidth, canvasWidth);
 
-            backgroundLayer = p5.createGraphics(canvasWidth, canvasWidth);
-            drawingLayer = p5.createGraphics(canvasWidth, canvasWidth);
+            backgroundLayer = p.createGraphics(canvasWidth, canvasWidth);
+            drawingLayer = p.createGraphics(canvasWidth, canvasWidth);
 
             populatePixel();
             showBackground(background);
         };
 
-        p5.draw = () => {
-            p5.image(backgroundLayer, 0, 0);
-            p5.image(drawingLayer, 0, 0);
-            if (p5.mouseIsPressed) {
+        p.draw = () => {
+            p.image(backgroundLayer, 0, 0);
+            p.image(drawingLayer, 0, 0);
+            if (p.mouseIsPressed) {
                 if (tool === "pen") {
-                    displayPixel(p5.mouseX, p5.mouseY, color);
+                    displayPixel(p.mouseX, p.mouseY, color);
                 } else if (tool === "eraser") {
-                    erasePixel(p5.mouseX, p5.mouseY);
+                    erasePixel(p.mouseX, p.mouseY);
                 }
             }
         };
@@ -139,7 +139,7 @@ const Sketch = (props) => {
                 drawingLayer.vertex(x, y + pixelSize);
             }
 
-            drawingLayer.endShape(p5.CLOSE);
+            drawingLayer.endShape(p.CLOSE);
         }
 
         const showBackground = (selectedBg) => {
@@ -165,7 +165,7 @@ const Sketch = (props) => {
                     for (let j = 0; j < layer.height; j += pixelSize) {
                         const colIndex = Math.floor(i / pixelSize);
                         const rowIndex = Math.floor(j / pixelSize);
-                        const color = p5.color(200);
+                        const color = p.color(200);
 
                         if (colIndex % 2 === 1 || rowIndex % 2 === 1) {
                             // Darken the color for intersecting lines
@@ -232,23 +232,33 @@ const Sketch = (props) => {
 
     }
 
-    return (
-        <>
-            <ReactP5Wrapper
-                sketch={sketch}
-            />
-        </>
-    )
+    useEffect(() => {
+        const sketchInstance = new p5(Sketch);
+        sketchRef.current = sketchInstance;
+    
+        return () => {
+            if (sketchRef.current) {
+                sketchRef.current.remove();
+            }
+        };
+    }, []);
+
+      useEffect(() => {
+        if (sketchRef.current) {
+          sketchRef.current.draw(
+            canvasWidth,
+            pixelLength,
+            tool,
+            penSize,
+            penTip,
+            color,
+            background
+          );
+        }
+      }, [canvasWidth, pixelLength, tool, penSize, penTip, color, background]);
+      
+
+    return <div ref={sketchRef}></div>;
 }
 
-Sketch.propTypes = {
-    canvasWidth: PropTypes.number.isRequired,
-    pixelLength: PropTypes.number.isRequired,
-    tool: PropTypes.string.isRequired,
-    penSize: PropTypes.number.isRequired,
-    penTip: PropTypes.string.isRequired,
-    color: PropTypes.string.isRequired,
-    background: PropTypes.string.isRequired,
-};
-
-export default Sketch
+export default SketchComponent

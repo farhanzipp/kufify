@@ -5,7 +5,7 @@ const ColorPicker = ({ setColorRef }) => {
     const [selectedColor, setSelectedColor] = useState("#333333");
 
     const colorOptions = ["#FF0000", "#00FF00", "#0000FF", 
-    "#FFFF00", "#FF00FF", "#00FFFF", "#FFA500", "#808080", "#333333", "#FFFFFF"];
+    "#FFFF00", "#FFA500", "#808080", "#333333", "#FFFFFF"];
 
     const handleColorChange = (color) => {
         setSelectedColor(color);
@@ -22,7 +22,7 @@ const ColorPicker = ({ setColorRef }) => {
             >
 
             </div>
-            <div className='w-fit grid grid-cols-5 gap-1'>
+            <div className='w-fit grid grid-cols-4 gap-1'>
                 {colorOptions.map((color, index) => (
                     <button
                         key={index}

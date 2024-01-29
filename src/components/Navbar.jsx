@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 const Navbar = ( {newDrawingFunc , saveImageFunc, clearDrawingFunc }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,9 +13,9 @@ const Navbar = ( {newDrawingFunc , saveImageFunc, clearDrawingFunc }) => {
                 <h1 className='font-bold text-white'>KUFIfy</h1>
                 <div id="navbar-default" className={`absolute right-0 top-10 sm:bg-transparent sm:relative sm:inline sm:top-0 ${isMenuOpen ? '' : 'hidden'}`}>
                         <div className='flex flex-col items-center h-full text-center sm:inline sm:w-full text-white'>
-                            <ul className='p-2 flex flex-col sm:flex-row sm:justify-center lg:gap-12 bg-teal-700'>
+                            <ul className='p-2 flex flex-col gap-2 text-sm sm:flex-row sm:justify-center md:gap-5 bg-teal-700'>
                                 <li>
-                                    <a className="text-sm md:text-lg" 
+                                    <a 
                                         href='#'
                                         onClick={newDrawingFunc}
                                     >
@@ -22,7 +23,7 @@ const Navbar = ( {newDrawingFunc , saveImageFunc, clearDrawingFunc }) => {
                                     </a>
                                 </li>
                                 <li>
-                                    <a className="text-sm md:text-lg" 
+                                    <a 
                                         href='#'
                                         onClick={saveImageFunc}
                                     >
@@ -30,7 +31,7 @@ const Navbar = ( {newDrawingFunc , saveImageFunc, clearDrawingFunc }) => {
                                     </a>
                                 </li>
                                 <li>
-                                    <a className="text-sm md:text-lg" 
+                                    <a 
                                         href='#'
                                         onClick={clearDrawingFunc}
                                     >
@@ -74,6 +75,12 @@ const Navbar = ( {newDrawingFunc , saveImageFunc, clearDrawingFunc }) => {
             </div>
         </nav>
     )
+}
+
+Navbar.propTypes = {
+    newDrawingFunc:PropTypes.func,
+    saveImageFunc:PropTypes.func,
+    clearDrawingFunc:PropTypes.func
 }
 
 export default Navbar

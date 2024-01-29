@@ -41,3 +41,36 @@ export const drawHamza = (drawingLayer, x, y, pixelSize, direction) => {
 
     drawingLayer.endShape(drawingLayer.CLOSE);
 };
+
+export const drawKaf = (drawingLayer, x, y, pixelSize, direction) => {
+    let ksize = pixelSize * 3 / 5;
+    drawingLayer.beginShape();
+    if (direction === "N") {
+        drawingLayer.vertex(x, y);
+        drawingLayer.vertex(x + ksize * 5, y);
+        drawingLayer.vertex(x + ksize * 5, y + ksize);
+        drawingLayer.vertex(x + ksize, y + ksize);
+        drawingLayer.vertex(x + ksize, y + ksize * 2);
+        drawingLayer.vertex(x + ksize * 5, y + ksize * 2);
+        drawingLayer.vertex(x + ksize * 5 , y + ksize * 5);
+        drawingLayer.vertex(x , y + ksize * 5);
+        drawingLayer.vertex(x , y + ksize * 4);
+        drawingLayer.vertex(x + ksize * 4 , y + ksize * 4);
+        drawingLayer.vertex(x + ksize * 4 , y + ksize * 3);
+        drawingLayer.vertex(x, y + ksize * 3);
+    } else if (direction === "E") {
+        drawingLayer.vertex(x,y);
+        drawingLayer.vertex(x + ksize, y);
+        drawingLayer.vertex(x + ksize, y + ksize * 4);
+        drawingLayer.vertex(x + ksize * 2, y + ksize * 4);
+        drawingLayer.vertex(x + ksize * 2, y );
+        drawingLayer.vertex(x + ksize * 5, y );
+        drawingLayer.vertex(x + ksize * 5, y + ksize * 5 );
+        drawingLayer.vertex(x + ksize * 4, y + ksize * 5 );
+        drawingLayer.vertex(x + ksize * 4, y + ksize );
+        drawingLayer.vertex(x + ksize * 3, y + ksize );
+        drawingLayer.vertex(x + ksize * 3, y + ksize * 5 );
+        drawingLayer.vertex(x, y + ksize * 5 );
+    }
+    drawingLayer.endShape(drawingLayer.CLOSE);
+}

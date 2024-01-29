@@ -1,17 +1,18 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import p5 from 'p5';
-import { drawHamza } from './utils/shapes';
+import { drawHamza, drawKaf } from './utils/shapes';
 import { showBackground } from './utils/backgrounds';
 import Navbar from './components/Navbar';
-import ToggleButton from './components/ToggleButton'
 import ColorPicker from './components/ColorPicker';
+import SelectPentip from './components/SelectPentip';
 
 const App = () => {
     const sketchRef = useRef();
 
     let canvasWidthRef = useRef(350);
-    const pixelLengthRef = useRef(19);
-    const penSizeRef = useRef(1);
+    // const pixelLengthRef = useRef(19);
+    let [pixelLength, setPixelLength] = useState(19);
+    // const penSizeRef = useRef(1);
     const penTipRef = useRef("default");
     const colorRef = useRef("#333333");
     const backgroundRef = useRef("background1");
@@ -21,8 +22,7 @@ const App = () => {
 
     const Sketch = (p) => {
         let canvasWidth = canvasWidthRef.current;
-        let pixelLength = pixelLengthRef.current;
-        let penSize = penSizeRef.current;
+        // let pixelLength = pixelLengthRef.current;
         let pixelSize = Math.floor(canvasWidth / pixelLength);
         // Adjust the canvas width to be an exact multiple of pixelSize
         canvasWidth = pixelSize * pixelLength;
@@ -36,11 +36,11 @@ const App = () => {
             backgroundLayer = p.createGraphics(canvasWidth, canvasWidth);
             populatePixel();
         };
-        
+
         p.draw = () => {
             p.image(backgroundLayer, 0, 0);
             p.image(drawingLayer, 0, 0);
-            
+
             if (p.mouseIsPressed) {
                 displayPixel(p.mouseX, p.mouseY);
             }
@@ -49,6 +49,7 @@ const App = () => {
         };
 
         const populatePixel = () => {
+            pixelSize *= 1;
             for (let row = 0; row < pixelLength; row++) {
                 for (let col = 0; col < pixelLength; col++) {
                     let x = col * pixelSize;
@@ -61,7 +62,7 @@ const App = () => {
         };
 
         const displayPixel = (x, y) => {
-            pixelSize *= penSize;
+            pixelSize *= 1;
             let col = Math.floor(x / pixelSize);
             let row = Math.floor(y / pixelSize);
 
@@ -81,6 +82,8 @@ const App = () => {
                     drawingLayer.ellipse(centerX, centerY, pixelSize, pixelSize);
                 } else if (penTipRef.current.startsWith("hamza")) {
                     drawHamza(drawingLayer, pixelX, pixelY, pixelSize, penTipRef.current.slice(-1));
+                } else if (penTipRef.current.startsWith("kaf")) {
+                    drawKaf(drawingLayer, pixelX, pixelY, pixelSize, penTipRef.current.slice(-1));
                 } else {
                     drawingLayer.rect(pixelX, pixelY, pixelSize, pixelSize);
                 }
@@ -99,83 +102,86 @@ const App = () => {
         };
 
         const clearDrawing = () => {
+            p.noLoop();
             drawingLayer.clear();
             p.clear();
+            p.loop();
         }
-        
+
         // Set the downloadImg function to the outer variable
         downloadImgFn = downloadImg;
         clearDrawingFn = clearDrawing;
     };
 
-    const handleToolChange = (event) => {
-        penTipRef.current = event.target.value;
-    };
+    useEffect(() => {
+        const sketchInstance = new p5((p) => {
+            Sketch(p);
+        }, sketchRef.current);
+
+        return sketchInstance.remove;
+    });
+
+    useEffect(() => {
+        const updateCanvasWidth = () => {
+            canvasWidthRef.current = Math.min(window.innerWidth, 550);
+            // Update canvas size
+            sketchRef.current.width = canvasWidthRef.current;
+        };
+
+        updateCanvasWidth();
+
+        const handleResize = () => {
+            updateCanvasWidth();
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, [canvasWidthRef]);
+
 
     const handleBgChange = (event) => {
         backgroundRef.current = event.target.value;
     };
 
-    useEffect(() => {
-        const sketchInstance = new p5((p) => {
-            const sketch = Sketch(p);
-        }, sketchRef.current);
-
-        return sketchInstance.remove;
-    }, []);
-
-    useEffect(() => {
-        const updateCanvasWidth = () => {
-          canvasWidthRef.current = Math.min(window.innerWidth, 500);
-          // Update canvas size
-          sketchRef.current.width = canvasWidthRef.current;
-        };
-
-        updateCanvasWidth();
-    
-        const handleResize = () => {
-          updateCanvasWidth();
-        };
-    
-        window.addEventListener('resize', handleResize);
-    
-        return () => {
-          window.removeEventListener('resize', handleResize);
-        };
-      }, [canvasWidthRef]);
-    
-
-    // Allow calling downloadImg from outside
-    const sketchFunctionFromOutside = (func) => {
-        if (func === downloadImgFn) {
-            return downloadImgFn();
-        } else if ( func === clearDrawingFn) {
-            return clearDrawingFn();
+    const handlePixelLengthChange = () => {
+        const pixelLengthString = prompt('Enter pixel length:');
+        if (pixelLengthString !== null) {
+            const pixelLength = parseInt(pixelLengthString, 10);
+            if (!isNaN(pixelLength)) {
+                setPixelLength(pixelLength);
+            } else {
+                alert('Please enter a valid number for pixel length.');
+            }
         }
     };
 
-    const handleSaveImage = () => sketchFunctionFromOutside(downloadImgFn);
-    const handleClearDrawing = () => sketchFunctionFromOutside(clearDrawingFn);
+    const handleSaveImage = () => downloadImgFn();
+    const handleClearDrawing = () => clearDrawingFn();
 
     return (
         <>
             <Navbar
-                newDrawingFunc={() => console.log("new draw")}
+                newDrawingFunc={handlePixelLengthChange}
                 saveImageFunc={handleSaveImage}
                 clearDrawingFunc={handleClearDrawing}
             />
-            <div className='p-1 grid grid-flow-row gap-2'>
-                <ColorPicker setColorRef={colorRef} />
-
-                <div ref={sketchRef} className='w-fit mx-auto'></div>
-
-                <div className="grid grid-flow-col">
-                    <ToggleButton penTipRef={penTipRef} />
+            <div className='mx-auto p-1 grid gap-2 grid-cols-1 md:w-4/6 md:grid-cols-4 md:grid-rows-3 '>
+                <div className='grid grid-cols-2 md:row-start-3'>
+                    <ColorPicker setColorRef={colorRef} />
                     <select onChange={handleBgChange}>
                         <option value="background1">Bg1</option>
                         <option value="background2">Bg2</option>
                         <option value="background3">Bg3</option>
                     </select>
+                </div>
+
+                <div ref={sketchRef} className='w-fit mx-auto md:col-start-2 md:col-span-3 md:row-span-3'></div>
+
+                <div className="flex justify-between md:grid md:row-start-1 md:grid-cols-2">
+                    <SelectPentip penTipRef={penTipRef} />
                 </div>
             </div>
         </>

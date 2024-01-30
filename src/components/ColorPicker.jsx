@@ -13,16 +13,16 @@ const ColorPicker = ({ setColorRef }) => {
     };
 
     return (
-        <div className='flex gap-1'>
+        <div className='flex gap-2 md:flex-col md:p-2 md:rounded-md md:bg-gray-400'>
             <div 
-                className='w-11 h-11 rounded-md border-gray-300 border'
+                className='w-11 h-11 rounded-md border-gray-300 border place-self-end md:border-0'
                 style={{
                     backgroundColor: selectedColor,
                 }}
             >
 
             </div>
-            <div className='w-fit grid grid-cols-4 gap-1'>
+            <div className='w-fit grid grid-cols-4 gap-1 md:grid-cols-2'>
                 {colorOptions.map((color, index) => (
                     <button
                         key={index}

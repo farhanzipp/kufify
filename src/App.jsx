@@ -5,6 +5,7 @@ import { showBackground } from './utils/backgrounds';
 import Navbar from './components/Navbar';
 import ColorPicker from './components/ColorPicker';
 import SelectPentip from './components/SelectPentip';
+import ArabicInput from './components/ArabicInput';
 
 const App = () => {
     const sketchRef = useRef();
@@ -141,11 +142,6 @@ const App = () => {
         };
     }, [canvasWidthRef]);
 
-
-    const handleBgChange = (event) => {
-        backgroundRef.current = event.target.value;
-    };
-
     const handlePixelLengthChange = () => {
         const pixelLengthString = prompt('Enter pixel length:');
         if (pixelLengthString !== null) {
@@ -158,6 +154,9 @@ const App = () => {
         }
     };
 
+    const handleBgChange = (event) => {
+        backgroundRef.current = event.target.value;
+    };
     const handleSaveImage = () => downloadImgFn();
     const handleClearDrawing = () => clearDrawingFn();
 
@@ -168,8 +167,8 @@ const App = () => {
                 saveImageFunc={handleSaveImage}
                 clearDrawingFunc={handleClearDrawing}
             />
-            <div className='mx-auto p-1 grid gap-2 grid-cols-1 md:w-4/6 md:grid-cols-4 md:grid-rows-3 '>
-                <div className='grid grid-cols-2 md:row-start-3'>
+            <div className='mx-auto flex flex-col gap-3 justify-center items-center md:flex-row md:gap-7 md:items-start'>
+                <div className='flex gap-2 md:order-3 md:flex-col'>
                     <ColorPicker setColorRef={colorRef} />
                     <select onChange={handleBgChange}>
                         <option value="background1">Bg1</option>
@@ -178,11 +177,14 @@ const App = () => {
                     </select>
                 </div>
 
-                <div ref={sketchRef} className='w-fit mx-auto md:col-start-2 md:col-span-3 md:row-span-3'></div>
+                <div ref={sketchRef} className='md:order-2'></div>
 
-                <div className="flex justify-between md:grid md:row-start-1 md:grid-cols-2">
+                <div className="md:order-1">
                     <SelectPentip penTipRef={penTipRef} />
                 </div>
+            </div>
+            <div>
+                <ArabicInput />
             </div>
         </>
     );

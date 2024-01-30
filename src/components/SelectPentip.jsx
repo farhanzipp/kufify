@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 const ButtonWithImage = ({ imageSrc, onClick, isActive, value }) => (
     <button
@@ -30,18 +31,29 @@ const SelectPentip = ({ penTipRef }) => {
     ];
 
   return (
-    <>
-        {buttonData.map((data, index) => (
-            <ButtonWithImage
-                key={index}
-                imageSrc={data.imageSrc}
-                onClick={(value) => handleButtonClick(index, value)}
-                isActive={index === activeIndex}
-                value= {data.value}
-            />
-        ))}
-    </>
+    <div className='flex justify-center gap-1 md:p-3 md:gap-3 md:flex-col md:rounded-md md:bg-gray-400'>
+            {buttonData.map((data, index) => (
+                <ButtonWithImage
+                    key={index}
+                    imageSrc={data.imageSrc}
+                    onClick={(value) => handleButtonClick(index, value)}
+                    isActive={index === activeIndex}
+                    value= {data.value}
+                />
+            ))}
+    </div>
   )
+}
+
+ButtonWithImage.propTypes = {
+    imageSrc:PropTypes.string,
+    onClick:PropTypes.func,
+    isActive:PropTypes.bool,
+    value:PropTypes.string,
+}
+
+SelectPentip.propTypes = {
+    penTipRef:PropTypes.object
 }
 
 export default SelectPentip

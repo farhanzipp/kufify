@@ -4,3 +4,7 @@
     font-weight: normal;
     font-style: normal;
   }
+
+#freeflow_generator {
+  font-feature-settings: "ccmp" off, "calt" on,"liga" on;
+}

@@ -1,11 +1,10 @@
 @font-face {
-    font-family: 'FKS_freeflow-Regular', sans-serif;
-    src: url('./fonts/FKS_freeflow-Regular.woff') format('woff');
-    src: url('./fonts/FKS_freeflow-Regular.ttf') format('ttf');
-    font-weight: normal;
-    font-style: normal;
-  }
+  font-family: 'FKS';
+  src: url('../fonts/FKS_freeflow-Regular.ttf') format('truetype');
+       /* url('./fonts/FKS_freeflow-Regular.woff') format('woff'); */
+}
 
+/* 
 #freeflow_generator {
   font-feature-settings: "ccmp" off, "calt" on,"liga" on;
-}
+} */

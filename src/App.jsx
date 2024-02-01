@@ -21,6 +21,11 @@ const App = () => {
     let downloadImgFn;
     let clearDrawingFn;
 
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
+
     const Sketch = (p) => {
         let canvasWidth = canvasWidthRef.current;
         // let pixelLength = pixelLengthRef.current;
@@ -161,36 +166,44 @@ const App = () => {
     const handleClearDrawing = () => clearDrawingFn();
 
     return (
-        <div className='bg-slate-50 overflow-hidden'>
+        <div className='pb-5 h-screen bg-slate-50 overflow-hidden'>
             <Navbar
                 newDrawingFunc={handlePixelLengthChange}
                 saveImageFunc={handleSaveImage}
                 clearDrawingFunc={handleClearDrawing}
             />
-            <div className='mx-auto flex flex-col gap-3 justify-center items-center md:flex-row md:gap-7 md:items-start'>
-                <div className='mb-3 flex gap-2 md:order-3 md:flex-col shadow-sm'>
-                    <ColorPicker setColorRef={colorRef} />
-                    <div className='p-2 flex items-center rounded-md border-2 border-teal-400'>
-                        <p>Guide :</p>
-                        <select onChange={handleBgChange} className='font-semibold'>
-                            <option value="background1">Default</option>
-                            <option value="background2">+ -</option>
-                            <option value="background3">Bold</option>
-                            <option value="grid">Grid</option>
-                            <option value="dot">Dot</option>
-                        </select>
+            <div className='mx-auto flex flex-col md:w-4/5 lg:w-3/5 xl:w-2/5'>
+                <div className='mx-auto flex flex-col gap-3 justify-center items-center md:flex-row md:gap-7 md:items-start'>
+                    <div className='flex gap-2 mb-3 bg-white rounded-md shadow-md md:order-3 md:flex-col'>
+                        <ColorPicker setColorRef={colorRef} />
+                        <div className='p-2 flex items-center md:flex-col'>
+                            <p >Bg :</p>
+                            <select onChange={handleBgChange} className='font-semibold outline-none'>
+                                <option value="background1">Def</option>
+                                <option value="background2">+ -</option>
+                                <option value="background3">Bold</option>
+                                <option value="grid">Grid</option>
+                                <option value="dot">Dot</option>
+                            </select>
+                        </div>
+
+                        <div className='hidden md:inline p-2 px-3 py-5 m-2 mt-9 rounded-md font-semibold border-2 border-emerald-300 hover:bg-emerald-300' style={{writingMode : "vertical-rl"}} onClick={toggleMenu}>freeflow basic</div>
+                        
                     </div>
+
+                    <div ref={sketchRef} className='md:order-2 border shadow-md'></div>
+
+                    <div className="md:order-1 mt-4 md:mt-0">
+                        <SelectPentip penTipRef={penTipRef} />
+                    </div>
+
+                    <button className='p-2 border border-teal-400 rounded-md md:hidden' onClick={toggleMenu}>freeflow basic</button>
                 </div>
-
-                <div ref={sketchRef} className='md:order-2 shadow-lg'></div>
-
-                <div className="md:order-1 mt-4">
-                    <SelectPentip penTipRef={penTipRef} />
+                <div className={ `${isMenuOpen ? '' : 'hidden'}`}>
+                    <ArabicInput />
                 </div>
             </div>
-            <div>
-                <ArabicInput />
-            </div>
+
         </div>
     );
 };

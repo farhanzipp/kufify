@@ -1,39 +1,47 @@
-import { useState } from 'react';
-import '../assets/styles/foks.css'
+import { useEffect, useRef, useState } from 'react';
+import PropTypes from 'prop-types';
+
+const ContentEditable = (props) => {
+    const contentEditableRef = useRef(null);
+
+    useEffect(() => {
+        if (contentEditableRef.current.textContent !== props.value) {
+            contentEditableRef.current.textContent = props.value;
+        }
+    });
+12
+    return (
+        <p
+            contentEditable="true"
+            ref={contentEditableRef}
+            onInput={event => {
+                props.onChange(event.target.textContent);
+            }}
+            className='h-20 my-7 mx-auto p-3 rounded-md shadow-md bg-white text-right text-5xl outline-emerald-300'
+            style={{ fontFamily: "FKS" }}
+        />
+    )
+}
 
 const ArabicInput = () => {
-    const [inputValue, setInputValue] = useState('');
-
-    const handleInputChange = (e) => {
-        // Restrict input to Arabic text (numbers and alphabet)
-        const regex = /^[\u0600-\u06FF\s0-9]+$/;
-        const newInputValue = e.target.value;
-
-        if (regex.test(newInputValue) || newInputValue === '') {
-            setInputValue(newInputValue);
-        }
-    };
+    const [content, setContent] = useState('هذا من فضل ربي');
 
     return (
-        <div id="freeflow-generator" className='p-3 mx-auto mt-4 flex flex-col md:flex-row items-end whitespace-normal'>
-            <input
-                type="text"
-                value={inputValue}
-                onChange={handleInputChange}
-                placeholder="Enter Arabic text"
-                className='my-2 p-2 w-1/2 text-right border-2'
+        <>
+            <ContentEditable
+                value={content}
 
+                onChange={updatedContent => {
+                    setContent(updatedContent);
+                }}
             />
-
-            <h1 className='min-h-18 px-2 pt-2 text-6xl text-right rounded-md'
-                style={{ fontFamily: 'FKS_freeflow' }}
-            >
-                {inputValue}
-            </h1>
-
-            
-        </div>
+        </>
     );
 };
 
+ContentEditable.propTypes = {
+    value: PropTypes.string,
+    onChange:PropTypes.func
+
+}
 export default ArabicInput;

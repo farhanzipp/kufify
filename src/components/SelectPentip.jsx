@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const ButtonWithImage = ({ imageSrc, onClick, isActive, value }) => (
     <button
-        className={`${isActive ? 'bg-slate-400 md:bg-slate-50' : ''} p-1 w-9 h-9 flex justify-center items-center rounded-md border-2 border-teal-900 hover:bg-slate-400`}
+        className={`${isActive ? 'bg-emerald-300' : ''} p-1 w-9 h-9 flex justify-center items-center rounded-md hover:bg-emerald-300`}
         onClick={() => onClick(value)}
     >
         <img src={imageSrc} alt="Button Image" />
@@ -31,7 +31,7 @@ const SelectPentip = ({ penTipRef }) => {
     ];
 
   return (
-    <div className='flex justify-center gap-1 md:p-3 md:gap-3 md:flex-col md:rounded-md md:bg-gray-400'>
+    <div className='flex justify-center gap-1 p-3 rounded-md shadow-md bg-white md:gap-3 md:flex-col'>
             {buttonData.map((data, index) => (
                 <ButtonWithImage
                     key={index}

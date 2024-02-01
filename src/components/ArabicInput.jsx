@@ -15,21 +15,23 @@ const ArabicInput = () => {
     };
 
     return (
-        <div className='md:w-1/2 p-3 mx-auto mt-7 bg-gray-300 rounded-md whitespace-normal'>
-            <h1 className='min-h-14 text-6xl text-right'
-                style={{ fontFamily: 'FKS_freeflow' }}
-            >
-                {inputValue}
-            </h1>
-
+        <div id="freeflow-generator" className='p-3 mx-auto mt-4 flex flex-col md:flex-row items-end whitespace-normal'>
             <input
                 type="text"
                 value={inputValue}
                 onChange={handleInputChange}
                 placeholder="Enter Arabic text"
-                className=''
+                className='my-2 p-2 w-1/2 text-right border-2'
 
             />
+
+            <h1 className='min-h-18 px-2 pt-2 text-6xl text-right rounded-md'
+                style={{ fontFamily: 'FKS_freeflow' }}
+            >
+                {inputValue}
+            </h1>
+
+            
         </div>
     );
 };

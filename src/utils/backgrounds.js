@@ -71,7 +71,7 @@ export const showBackground = (pixelSize, selectedBg, layer) => {
         layer.strokeWeight(1);
         layer.stroke(0);
         layer.fill(255);
-        layer.square(i, j, pixelSize);
+        layer.square(i, j, pixelSize); 
       }
     }
   } else if (selectedBg === "dot") {

@@ -161,32 +161,37 @@ const App = () => {
     const handleClearDrawing = () => clearDrawingFn();
 
     return (
-        <>
+        <div className='overflow-hidden'>
             <Navbar
                 newDrawingFunc={handlePixelLengthChange}
                 saveImageFunc={handleSaveImage}
                 clearDrawingFunc={handleClearDrawing}
             />
             <div className='mx-auto flex flex-col gap-3 justify-center items-center md:flex-row md:gap-7 md:items-start'>
-                <div className='flex gap-2 md:order-3 md:flex-col'>
+                <div className='mb-3 flex gap-2 md:order-3 md:flex-col shadow-sm'>
                     <ColorPicker setColorRef={colorRef} />
-                    <select onChange={handleBgChange}>
-                        <option value="background1">Bg1</option>
-                        <option value="background2">Bg2</option>
-                        <option value="background3">Bg3</option>
-                    </select>
+                    <div className='p-2 flex items-center rounded-md border-2 border-teal-400'>
+                        <p>Guide :</p>
+                        <select onChange={handleBgChange} className='font-semibold'>
+                            <option value="background1">Default</option>
+                            <option value="background2">+ -</option>
+                            <option value="background3">Bold</option>
+                            <option value="grid">Grid</option>
+                            <option value="dot">Dot</option>
+                        </select>
+                    </div>
                 </div>
 
-                <div ref={sketchRef} className='md:order-2'></div>
+                <div ref={sketchRef} className='md:order-2 shadow-lg'></div>
 
-                <div className="md:order-1">
+                <div className="md:order-1 mt-4">
                     <SelectPentip penTipRef={penTipRef} />
                 </div>
             </div>
             <div>
                 <ArabicInput />
             </div>
-        </>
+        </div>
     );
 };
 

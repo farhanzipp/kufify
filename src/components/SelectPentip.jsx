@@ -19,15 +19,15 @@ const SelectPentip = ({ penTipRef }) => {
     };
 
     const buttonData = [
-        {imageSrc: '../src/assets/images/square.png', value: 'default'},
-        {imageSrc: '../src/assets/images/eraser.png', value: 'eraser'},
-        {imageSrc: '../src/assets/images/circle.png', value: 'circle'},
-        {imageSrc: '../src/assets/images/hamzaN.png', value: 'hamzaN'},
-        {imageSrc: '../src/assets/images/hamzaE.png', value: 'hamzaE'},
-        {imageSrc: '../src/assets/images/hamzaS.png', value: 'hamzaS'},
-        {imageSrc: '../src/assets/images/hamzaW.png', value: 'hamzaW'},
-        {imageSrc: '../src/assets/images/kafN.png', value: 'kafN'},
-        {imageSrc: '../src/assets/images/kafE.png', value: 'kafE'}
+        {imageSrc: './square.png', value: 'default'},
+        {imageSrc: './eraser.png', value: 'eraser'},
+        {imageSrc: './circle.png', value: 'circle'},
+        {imageSrc: './hamzaN.png', value: 'hamzaN'},
+        {imageSrc: './hamzaE.png', value: 'hamzaE'},
+        {imageSrc: './hamzaS.png', value: 'hamzaS'},
+        {imageSrc: './hamzaW.png', value: 'hamzaW'},
+        {imageSrc: './kafN.png', value: 'kafN'},
+        {imageSrc: './kafE.png', value: 'kafE'}
     ];
 
   return (

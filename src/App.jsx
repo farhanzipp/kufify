@@ -6,11 +6,12 @@ import Navbar from './components/Navbar';
 import ColorPicker from './components/ColorPicker';
 import SelectPentip from './components/SelectPentip';
 import ArabicInput from './components/ArabicInput';
+import Footer from './components/Footer';
 
 const App = () => {
     const sketchRef = useRef();
 
-    let canvasWidthRef = useRef(350);
+    let canvasWidthRef = useRef(550);
     // const pixelLengthRef = useRef(19);
     let [pixelLength, setPixelLength] = useState(19);
     // const penSizeRef = useRef(1);
@@ -166,7 +167,7 @@ const App = () => {
     const handleClearDrawing = () => clearDrawingFn();
 
     return (
-        <div className='pb-5 h-screen bg-slate-50 overflow-hidden'>
+        <div className='pb-5 h-screen bg-slate-100 overflow-hidden'>
             <Navbar
                 newDrawingFunc={handlePixelLengthChange}
                 saveImageFunc={handleSaveImage}
@@ -178,7 +179,7 @@ const App = () => {
                         <ColorPicker setColorRef={colorRef} />
                         <div className='p-2 flex items-center md:flex-col'>
                             <p >Bg :</p>
-                            <select onChange={handleBgChange} className='font-semibold outline-none'>
+                            <select onChange={handleBgChange} className='font-semibold cursor-pointer outline-none hover:text-emerald-600'>
                                 <option value="background1">Def</option>
                                 <option value="background2">+ -</option>
                                 <option value="background3">Bold</option>
@@ -187,7 +188,7 @@ const App = () => {
                             </select>
                         </div>
 
-                        <div className='hidden md:inline p-2 px-3 py-5 m-2 mt-9 rounded-md font-semibold border-2 border-emerald-300 hover:bg-emerald-300' style={{writingMode : "vertical-rl"}} onClick={toggleMenu}>freeflow basic</div>
+                        <div className='hidden md:inline p-2 px-3 py-5 m-2 mt-9 rounded-md font-semibold border-2 border-emerald-300 hover:bg-emerald-300 cursor-pointer' style={{writingMode : "vertical-rl"}} onClick={toggleMenu}>freeflow basic</div>
                         
                     </div>
 
@@ -197,12 +198,13 @@ const App = () => {
                         <SelectPentip penTipRef={penTipRef} />
                     </div>
 
-                    <button className='p-2 border border-teal-400 rounded-md md:hidden' onClick={toggleMenu}>freeflow basic</button>
+                    <button className='p-2 border border-teal-400 rounded-md cursor-pointer md:hidden' onClick={toggleMenu}>freeflow basic</button>
                 </div>
                 <div className={ `${isMenuOpen ? '' : 'hidden'}`}>
                     <ArabicInput />
                 </div>
             </div>
+            <Footer />
 
         </div>
     );

@@ -27,7 +27,7 @@ const ColorPicker = ({ setColorRef }) => {
                     <button
                         key={index}
                         onClick={() => handleColorChange(color)}
-                        className='w-5 h-5 rounded-sm border-0 cursor-pointer'
+                        className='w-5 h-5 rounded-sm border-0 hover:brightness-90 cursor-pointer'
                         style={{
                             backgroundColor: color,
                         }}

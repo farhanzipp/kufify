@@ -10,7 +10,10 @@ const Navbar = ( {newDrawingFunc , saveImageFunc, clearDrawingFunc }) => {
     return (
         <nav className='mb-2 bg-teal-700 flex justify-between items-center'>
             <div className='container p-2 mx-auto flex justify-between items-center'>
-                <h1 className='font-bold text-white'>KUFIfy</h1>
+                <div className='flex gap-2 items-center'>
+                    <img src='./kufify.svg' alt='kufify logo' className='h-10' />
+                    <h1 className='font-bold text-white'>KUFIfy</h1>
+                </div>
                 <div id="navbar-default" className={`absolute right-0 top-10 sm:bg-transparent sm:relative sm:inline sm:top-0 ${isMenuOpen ? '' : 'hidden'}`}>
                         <div className='flex flex-col items-center h-full text-center sm:inline sm:w-full text-white'>
                             <ul className='p-2 flex flex-col gap-2 text-sm sm:flex-row sm:justify-center md:gap-5 bg-teal-700'>

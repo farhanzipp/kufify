@@ -6,7 +6,7 @@ import Navbar from './components/Navbar';
 import ColorPicker from './components/ColorPicker';
 import SelectPentip from './components/SelectPentip';
 import ArabicInput from './components/ArabicInput';
-// import Footer from './components/Footer';
+import Footer from './components/Footer';
 
 const App = () => {
     const sketchRef = useRef();
@@ -194,7 +194,7 @@ const App = () => {
 
                     <div ref={sketchRef} className='md:order-2 border shadow-md'></div>
 
-                    <div className="md:order-1 mt-4 md:mt-0">
+                    <div className="md:order-1 mt-2 md:mt-0">
                         <SelectPentip penTipRef={penTipRef} />
                     </div>
                 </div>
@@ -202,7 +202,7 @@ const App = () => {
                     <ArabicInput />
                 </div>
             </div>
-            {/* <Footer /> */}
+            <Footer />
 
         </div>
     );

@@ -14,7 +14,7 @@ const Navbar = ( {newDrawingFunc , saveImageFunc, clearDrawingFunc }) => {
                     <img src='./kufify.svg' alt='kufify logo' className='h-10' />
                     <h1 className='font-bold text-white'>KUFIfy</h1>
                 </div>
-                <div id="navbar-default" className={`absolute right-0 top-10 sm:bg-transparent sm:relative sm:inline sm:top-0 ${isMenuOpen ? '' : 'hidden'}`}>
+                <div id="navbar-default" className={`absolute right-0 top-12 sm:bg-transparent sm:relative sm:inline sm:top-0 ${isMenuOpen ? '' : 'hidden'}`}>
                         <div className='flex flex-col items-center h-full text-center sm:inline sm:w-full text-white'>
                             <ul className='p-2 flex flex-col gap-2 text-sm sm:flex-row sm:justify-center md:gap-5 bg-teal-700'>
                                 <li>

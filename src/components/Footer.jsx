@@ -5,9 +5,9 @@ const Footer = () => {
     };
     
   return (
-    <div className='w-full p-2 fixed bottom-0 left-0 bg-teal-700'>
+    <div className='w-full p-1 fixed bottom-0 left-0 bg-teal-700'>
         <div className="container mx-auto flex justify-between text-white font-normal">
-            <p>©1445 <b>KUFIfy</b> by<a href='https://farhanzip.netlify.app' target='_blank' rel='noreferrer' className="hover:text-amber-400"> Farhanzip</a> </p>
+            <p>©1445 <a href='https://farhanzip.netlify.app' target='_blank' rel='noreferrer' className="hover:text-amber-400"> Farhanzip</a> </p>
             <div className="flex gap-2">
                 <a href={socials.instagram} target="_blank" rel="noreferrer">
                     <img src='./instagram.svg' alt="instagram logo" className='h-5'/>

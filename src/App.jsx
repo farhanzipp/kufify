@@ -167,7 +167,7 @@ const App = () => {
     const handleClearDrawing = () => clearDrawingFn();
 
     return (
-        <div className='pb-5 h-screen bg-slate-100 overflow-hidden'>
+        <div className='pb-5 h-full bg-slate-100 overflow-hidden'>
             <Navbar
                 newDrawingFunc={handlePixelLengthChange}
                 saveImageFunc={handleSaveImage}

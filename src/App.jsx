@@ -22,7 +22,7 @@ const App = () => {
     let downloadImgFn;
     let clearDrawingFn;
 
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(true);
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
@@ -197,8 +197,6 @@ const App = () => {
                     <div className="md:order-1 mt-4 md:mt-0">
                         <SelectPentip penTipRef={penTipRef} />
                     </div>
-
-                    <button className='p-2 border border-teal-400 rounded-md cursor-pointer md:hidden' onClick={toggleMenu}>freeflow basic</button>
                 </div>
                 <div className={ `${isMenuOpen ? '' : 'hidden'}`}>
                     <ArabicInput />

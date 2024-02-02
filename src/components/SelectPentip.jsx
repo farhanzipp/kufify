@@ -31,7 +31,7 @@ const SelectPentip = ({ penTipRef }) => {
     ];
 
   return (
-    <div className='flex justify-center gap-1 p-3 rounded-md shadow-md bg-white md:gap-3 md:flex-col'>
+    <div className='flex justify-center gap-1 rounded-md shadow-md bg-white md:gap-3 md:flex-col'>
             {buttonData.map((data, index) => (
                 <ButtonWithImage
                     key={index}

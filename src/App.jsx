@@ -6,7 +6,7 @@ import Navbar from './components/Navbar';
 import ColorPicker from './components/ColorPicker';
 import SelectPentip from './components/SelectPentip';
 import ArabicInput from './components/ArabicInput';
-import Footer from './components/Footer';
+// import Footer from './components/Footer';
 
 const App = () => {
     const sketchRef = useRef();
@@ -204,7 +204,7 @@ const App = () => {
                     <ArabicInput />
                 </div>
             </div>
-            <Footer />
+            {/* <Footer /> */}
 
         </div>
     );

@@ -29,7 +29,6 @@ const App = () => {
 
     const Sketch = (p) => {
         let canvasWidth = canvasWidthRef.current;
-        // let pixelLength = pixelLengthRef.current;
         let pixelSize = Math.floor(canvasWidth / pixelLength);
         // Adjust the canvas width to be an exact multiple of pixelSize
         canvasWidth = pixelSize * pixelLength;
@@ -105,7 +104,7 @@ const App = () => {
             setTimeout(() => {
                 p.saveCanvas("kufix", "png");
                 p.loop();
-            }, 500);
+            }, 1000);
         };
 
         const clearDrawing = () => {

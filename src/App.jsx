@@ -36,12 +36,16 @@ const App = () => {
 
         let backgroundLayer;
         let drawingLayer;
+        let undo;
 
         p.setup = () => {
             p.createCanvas(canvasWidth, canvasWidth);
             drawingLayer = p.createGraphics(canvasWidth, canvasWidth);
             backgroundLayer = p.createGraphics(canvasWidth, canvasWidth);
             populatePixel();
+
+            // undo = new p.Undo(50, drawingLayer);
+            // undo.capture();
         };
 
         p.draw = () => {
@@ -54,6 +58,23 @@ const App = () => {
 
             showBackground(pixelSize, backgroundRef.current, backgroundLayer);
         };
+
+        p.mouseReleased = () => {
+            undo.capture();
+        }
+
+        p.keyPressed = () => {
+            if (p.keyIsDown(p.CONTROL)){
+                //Z key
+                if (p.keyIsDown(90)){
+                  if(p.keyIsDown(p.SHIFT)){
+                    undo.redo();
+                  } else {
+                    undo.undo();
+                  }
+                }
+              }
+        }
 
         const populatePixel = () => {
             pixelSize *= 1;

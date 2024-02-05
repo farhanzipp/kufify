@@ -12,35 +12,34 @@ const App = () => {
     const sketchRef = useRef();
 
     let canvasWidthRef = useRef(350);
-    // const pixelLengthRef = useRef(19);
     let [pixelLength, setPixelLength] = useState(19);
     // const penSizeRef = useRef(1);
     const penTipRef = useRef("default");
     const colorRef = useRef("#333333");
     const backgroundRef = useRef("background1");
+    
 
     let downloadImgFn;
     let clearDrawingFn;
-
-    const [isMenuOpen, setIsMenuOpen] = useState(true);
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
-    };
+    let undoFn;
 
     const Sketch = (p) => {
         let canvasWidth = canvasWidthRef.current;
         let pixelSize = Math.floor(canvasWidth / pixelLength);
-        // Adjust the canvas width to be an exact multiple of pixelSize
         canvasWidth = pixelSize * pixelLength;
 
         let backgroundLayer;
         let drawingLayer;
+        
+        let currentUndoIndex = -1;
+        let undoHistory = [];
 
         p.setup = () => {
             p.createCanvas(canvasWidth, canvasWidth);
             drawingLayer = p.createGraphics(canvasWidth, canvasWidth);
             backgroundLayer = p.createGraphics(canvasWidth, canvasWidth);
             populatePixel();
+            captureUndoState();
         };
 
         p.draw = () => {
@@ -51,7 +50,22 @@ const App = () => {
                 displayPixel(p.mouseX, p.mouseY);
             }
 
+            p.mouseReleased = () => {
+                captureUndoState();
+            }
+
             showBackground(pixelSize, backgroundRef.current, backgroundLayer);
+        };
+
+
+        p.keyPressed = () => {
+            if (p.keyIsDown(p.CONTROL) && p.keyIsDown(90)){ // Check for Ctrl + Z
+                if (p.keyIsDown(p.SHIFT)) {
+                    redo();
+                } else {
+                    undo();
+                }
+            }
         };
 
         const populatePixel = () => {
@@ -114,9 +128,37 @@ const App = () => {
             p.loop();
         }
 
+        const captureUndoState = () => {
+            undoHistory.splice(currentUndoIndex + 1);
+            undoHistory.push(drawingLayer.get());
+
+            if (undoHistory.length > 50) {
+                undoHistory.shift();
+            }
+
+            currentUndoIndex = undoHistory.length - 1;
+        }
+
+        const undo = () => {
+            if (currentUndoIndex > 0) {
+                currentUndoIndex--;
+                drawingLayer.clear();
+                drawingLayer.image(undoHistory[currentUndoIndex], 0, 0);
+            }
+        };
+
+        const redo = () => {
+            if (currentUndoIndex < undoHistory.length - 1) {
+                currentUndoIndex++;
+                drawingLayer.clear();
+                drawingLayer.image(undoHistory[currentUndoIndex], 0, 0);
+            }
+        }
+
         // Set the downloadImg function to the outer variable
         downloadImgFn = downloadImg;
         clearDrawingFn = clearDrawing;
+        undoFn = undo;
     };
 
     useEffect(() => {
@@ -164,6 +206,10 @@ const App = () => {
     };
     const handleSaveImage = () => downloadImgFn();
     const handleClearDrawing = () => clearDrawingFn();
+    const handleUndo = () => {
+        // Call the undo function here
+        undoFn();
+    };
 
     return (
         <div className='pb-5 h-full bg-slate-100 overflow-hidden'>
@@ -187,8 +233,7 @@ const App = () => {
                             </select>
                         </div>
 
-                        <div className='hidden md:inline p-2 px-3 py-5 m-2 mt-9 rounded-md font-semibold border-2 border-emerald-300 hover:bg-emerald-300 cursor-pointer' style={{writingMode : "vertical-rl"}} onClick={toggleMenu}>freeflow basic</div>
-                        
+                        <button className='hidden md:inline m-2 p-2 mt-9 rounded-md font-semibold border-2 border-emerald-300 hover:bg-emerald-300 cursor-pointer' onClick={handleUndo}>Undo</button>
                     </div>
 
                     <div ref={sketchRef} className='md:order-2 border shadow-md'></div>
@@ -197,7 +242,7 @@ const App = () => {
                         <SelectPentip penTipRef={penTipRef} />
                     </div>
                 </div>
-                <div className={ `${isMenuOpen ? '' : 'hidden'}`}>
+                <div>
                     <ArabicInput />
                 </div>
             </div>

@@ -9,20 +9,30 @@ import ArabicInput from './components/ArabicInput';
 import Footer from './components/Footer';
 
 const App = () => {
+    const getInitialCanvasWidth = () => {
+        return window.innerWidth < 500 ? window.innerWidth : 500;
+    };
     const sketchRef = useRef();
+    const canvasWidthRef = useRef(getInitialCanvasWidth());
 
-    let canvasWidthRef = useRef(350);
     let [pixelLength, setPixelLength] = useState(19);
     // const penSizeRef = useRef(1);
     const penTipRef = useRef("default");
     const colorRef = useRef("#333333");
     const backgroundRef = useRef("background1");
     
-
     let downloadImgFn;
     let clearDrawingFn;
     let undoFn;
     let redoFn;
+
+    const updateCanvasWidth = (p) => {
+        const newCanvasWidth = getInitialCanvasWidth();
+        canvasWidthRef.current = newCanvasWidth;
+        p.resizeCanvas(newCanvasWidth, newCanvasWidth);
+    };
+
+    
 
     const Sketch = (p) => {
         let canvasWidth = canvasWidthRef.current;
@@ -42,6 +52,9 @@ const App = () => {
             populatePixel();
             captureUndoState();
             cnv.mouseReleased(() => {
+                captureUndoState();
+            });
+            cnv.touchEnded(() => {
                 captureUndoState();
             });
         };
@@ -162,32 +175,21 @@ const App = () => {
     };
 
     useEffect(() => {
-        const sketchInstance = new p5((p) => {
+        const p5Instance = new p5((p) => {
             Sketch(p);
         }, sketchRef.current);
 
-        return sketchInstance.remove;
-    });
+        updateCanvasWidth(p5Instance);
 
-    useEffect(() => {
-        const updateCanvasWidth = () => {
-            canvasWidthRef.current = Math.min(window.innerWidth, 550);
-            // Update canvas size
-            sketchRef.current.width = canvasWidthRef.current;
-        };
-
-        updateCanvasWidth();
-
-        const handleResize = () => {
-            updateCanvasWidth();
-        };
-
+        // Handle window resize
+        const handleResize = () => updateCanvasWidth(p5Instance);
         window.addEventListener('resize', handleResize);
 
         return () => {
             window.removeEventListener('resize', handleResize);
+            p5Instance.remove();
         };
-    }, [canvasWidthRef]);
+    }, []);
 
     const handlePixelLengthChange = () => {
         const pixelLengthString = prompt('Enter pixel length:');

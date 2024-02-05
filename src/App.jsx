@@ -17,6 +17,7 @@ const App = () => {
     const penTipRef = useRef("default");
     const colorRef = useRef("#333333");
     const backgroundRef = useRef("background1");
+    
 
     let downloadImgFn;
     let clearDrawingFn;
@@ -29,8 +30,9 @@ const App = () => {
 
         let backgroundLayer;
         let drawingLayer;
-        let undoHistory = [];
+        
         let currentUndoIndex = -1;
+        let undoHistory = [];
 
         p.setup = () => {
             p.createCanvas(canvasWidth, canvasWidth);
@@ -57,17 +59,14 @@ const App = () => {
 
 
         p.keyPressed = () => {
-            if (p.keyIsDown(p.CONTROL)) {
-                //Z key
-                if (p.keyIsDown(90)) {
-                    if (p.keyIsDown(p.SHIFT)) {
-                        redo();
-                    } else {
-                        undo();
-                    }
+            if (p.keyIsDown(p.CONTROL) && p.keyIsDown(90)){ // Check for Ctrl + Z
+                if (p.keyIsDown(p.SHIFT)) {
+                    redo();
+                } else {
+                    undo();
                 }
             }
-        }
+        };
 
         const populatePixel = () => {
             pixelSize *= 1;
@@ -146,7 +145,7 @@ const App = () => {
                 drawingLayer.clear();
                 drawingLayer.image(undoHistory[currentUndoIndex], 0, 0);
             }
-        }
+        };
 
         const redo = () => {
             if (currentUndoIndex < undoHistory.length - 1) {
@@ -207,7 +206,10 @@ const App = () => {
     };
     const handleSaveImage = () => downloadImgFn();
     const handleClearDrawing = () => clearDrawingFn();
-    const handleUndo = () => undoFn;
+    const handleUndo = () => {
+        // Call the undo function here
+        undoFn();
+    };
 
     return (
         <div className='pb-5 h-full bg-slate-100 overflow-hidden'>
@@ -231,8 +233,7 @@ const App = () => {
                             </select>
                         </div>
 
-                        <button className='hidden md:inline m-2 p-2 mt-9 rounded-md font-semibold border-2 border-emerald-300 hover:bg-emerald-300 cursor-pointer' onClick={handleUndo} >Undo</button>
-
+                        <button className='hidden md:inline m-2 p-2 mt-9 rounded-md font-semibold border-2 border-emerald-300 hover:bg-emerald-300 cursor-pointer' onClick={handleUndo}>Undo</button>
                     </div>
 
                     <div ref={sketchRef} className='md:order-2 border shadow-md'></div>

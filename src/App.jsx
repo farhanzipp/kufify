@@ -88,6 +88,8 @@ const App = () => {
 
             var pixelX = col * pixelSize;
             var pixelY = row * pixelSize;
+
+            if (pixelX < 0 || pixelY < 0 ) return;
             drawingLayer.noStroke();
 
             if (penTipRef.current === "eraser") {

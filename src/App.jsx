@@ -11,7 +11,7 @@ import Footer from './components/Footer';
 const App = () => {
     const sketchRef = useRef();
 
-    let canvasWidthRef = useRef(350);
+    let canvasWidthRef = useRef(550);
     let [pixelLength, setPixelLength] = useState(19);
     // const penSizeRef = useRef(1);
     const penTipRef = useRef("default");
@@ -218,11 +218,11 @@ const App = () => {
             />
             <div className='mx-auto flex flex-col md:w-4/5 lg:w-3/5 xl:w-2/5'>
                 <div className='mx-auto flex flex-col gap-3 justify-center items-center md:flex-row md:gap-7 md:items-start'>
-                    <div className='flex gap-2 mb-3 bg-white rounded-md shadow-md md:order-3 md:flex-col'>
+                    <div className='flex gap-2 mb-3 mx-2 bg-white rounded-md shadow-md md:order-3 md:flex-col'>
                         <ColorPicker setColorRef={colorRef} />
-                        <div className='py-3'>
-                            <select onChange={handleBgChange} className='font-semibold cursor-pointer outline-none hover:text-emerald-600'>
-                                <option value="" disabled selected hidden>Bg</option>
+                        <div className='py-4'>
+                            <select onChange={handleBgChange} className='font-semibold cursor-pointer outline-none'>
+                                <option value="" disabled={true}>Bg</option>
                                 <option value="background1">Def</option>
                                 <option value="background2">+ -</option>
                                 <option value="background3">Bold</option>
@@ -231,10 +231,10 @@ const App = () => {
                             </select>
                         </div>
                         <div className='flex gap-2 p-2 md:flex-col md:mt-1 md:px-3'>
-                            <button className='p-2 rounded-md font-semibold border-2 border-emerald-300 hover:bg-emerald-300 cursor-pointer' onClick={handleUndo}>
+                            <button className='p-2 rounded-md font-semibold border-2 border-emerald-300 hover:bg-emerald-300 cursor-pointer' onClick={handleUndo} onTouchEnd={handleUndo}>
                                 <img src="./rotate-left-solid.svg" alt="undo button" className='h-6 w-6 mx-auto' />
                             </button>
-                            <button className='p-2 rounded-md font-semibold border-2 border-emerald-300 hover:bg-emerald-300 cursor-pointer' onClick={handleRedo}>
+                            <button className='p-2 rounded-md font-semibold border-2 border-emerald-300 hover:bg-emerald-300 cursor-pointer' onClick={handleRedo} onTouchEnd={handleRedo}>
                                 <img src="./rotate-right-solid.svg" alt="redo button" className='h-6 w-6 mx-auto' />
                             </button>
                             <button className='hidden md:inline mt-5 p-2 rounded-md font-semibold border-2 border-red-500 hover:bg-red-500 cursor-pointer' onClick={handleClearDrawing}>

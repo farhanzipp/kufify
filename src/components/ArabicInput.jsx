@@ -17,7 +17,7 @@ const ContentEditable = (props) => {
             onInput={event => {
                 props.onChange(event.target.textContent);
             }}
-            className='h-18 mt-2 mx-1 p-2 rounded-md shadow-md bg-white text-right text-4xl outline-emerald-300'
+            className='h-18 mt-3 mx-2 p-2 rounded-md shadow-md bg-white text-right text-4xl outline-emerald-300'
             style={{ fontFamily: "FKS" }}
         />
     )

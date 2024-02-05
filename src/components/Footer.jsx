@@ -5,9 +5,9 @@ const Footer = () => {
     };
     
   return (
-    <div className='w-full p-1 bg-teal-700'>
-        <div className="container px-3 mx-auto flex justify-between text-white font-normal">
-            <p>©1445 <a href='https://farhanzip.netlify.app' target='_blank' rel='noreferrer' className="text-sm hover:text-amber-400"> Farhanzip</a> </p>
+    <footer className='w-full p-1 bg-teal-700 text-xs absolute bottom-0'>
+        <div className="container px-3 mx-auto flex justify-between items-center text-white font-normal">
+            <p className="font-semibold">©1445 <a href='https://farhanzip.netlify.app' target='_blank' rel='noreferrer' className=" hover:text-amber-400"> Farhanzip</a> </p>
             <div className="flex gap-2">
                 <a href={socials.instagram} target="_blank" rel="noreferrer">
                     <img src='./instagram.svg' alt="instagram logo" className='h-5'/>
@@ -17,7 +17,7 @@ const Footer = () => {
                 </a>
             </div>
         </div>
-    </div>
+    </footer>
   )
 }
 

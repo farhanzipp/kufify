@@ -22,6 +22,7 @@ const App = () => {
     let downloadImgFn;
     let clearDrawingFn;
     let undoFn;
+    let redoFn;
 
     const Sketch = (p) => {
         let canvasWidth = canvasWidthRef.current;
@@ -31,15 +32,18 @@ const App = () => {
         let backgroundLayer;
         let drawingLayer;
         
-        let currentUndoIndex = -1;
         let undoHistory = [];
+        let currentUndoIndex = -1;
 
         p.setup = () => {
-            p.createCanvas(canvasWidth, canvasWidth);
+            let cnv = p.createCanvas(canvasWidth, canvasWidth);
             drawingLayer = p.createGraphics(canvasWidth, canvasWidth);
             backgroundLayer = p.createGraphics(canvasWidth, canvasWidth);
             populatePixel();
             captureUndoState();
+            cnv.mouseReleased(() => {
+                captureUndoState();
+            });
         };
 
         p.draw = () => {
@@ -50,13 +54,8 @@ const App = () => {
                 displayPixel(p.mouseX, p.mouseY);
             }
 
-            p.mouseReleased = () => {
-                captureUndoState();
-            }
-
             showBackground(pixelSize, backgroundRef.current, backgroundLayer);
         };
-
 
         p.keyPressed = () => {
             if (p.keyIsDown(p.CONTROL) && p.keyIsDown(90)){ // Check for Ctrl + Z
@@ -159,6 +158,7 @@ const App = () => {
         downloadImgFn = downloadImg;
         clearDrawingFn = clearDrawing;
         undoFn = undo;
+        redoFn = redo;
     };
 
     useEffect(() => {
@@ -206,13 +206,11 @@ const App = () => {
     };
     const handleSaveImage = () => downloadImgFn();
     const handleClearDrawing = () => clearDrawingFn();
-    const handleUndo = () => {
-        // Call the undo function here
-        undoFn();
-    };
+    const handleUndo = () => undoFn();
+    const handleRedo = () => redoFn();
 
     return (
-        <div className='pb-5 h-full bg-slate-100 overflow-hidden'>
+        <div className='pb-5 h-full md:h-screen bg-slate-100 overflow-hidden'>
             <Navbar
                 newDrawingFunc={handlePixelLengthChange}
                 saveImageFunc={handleSaveImage}
@@ -222,9 +220,9 @@ const App = () => {
                 <div className='mx-auto flex flex-col gap-3 justify-center items-center md:flex-row md:gap-7 md:items-start'>
                     <div className='flex gap-2 mb-3 bg-white rounded-md shadow-md md:order-3 md:flex-col'>
                         <ColorPicker setColorRef={colorRef} />
-                        <div className='p-2 flex items-center md:flex-col'>
-                            <p >Bg :</p>
+                        <div className='py-3'>
                             <select onChange={handleBgChange} className='font-semibold cursor-pointer outline-none hover:text-emerald-600'>
+                                <option value="" disabled selected hidden>Bg</option>
                                 <option value="background1">Def</option>
                                 <option value="background2">+ -</option>
                                 <option value="background3">Bold</option>
@@ -232,8 +230,17 @@ const App = () => {
                                 <option value="dot">Dot</option>
                             </select>
                         </div>
-
-                        <button className='hidden md:inline m-2 p-2 mt-9 rounded-md font-semibold border-2 border-emerald-300 hover:bg-emerald-300 cursor-pointer' onClick={handleUndo}>Undo</button>
+                        <div className='flex gap-2 p-2 md:flex-col md:mt-1 md:px-3'>
+                            <button className='p-2 rounded-md font-semibold border-2 border-emerald-300 hover:bg-emerald-300 cursor-pointer' onClick={handleUndo}>
+                                <img src="./rotate-left-solid.svg" alt="undo button" className='h-6 w-6 mx-auto' />
+                            </button>
+                            <button className='p-2 rounded-md font-semibold border-2 border-emerald-300 hover:bg-emerald-300 cursor-pointer' onClick={handleRedo}>
+                                <img src="./rotate-right-solid.svg" alt="redo button" className='h-6 w-6 mx-auto' />
+                            </button>
+                            <button className='hidden md:inline mt-5 p-2 rounded-md font-semibold border-2 border-red-500 hover:bg-red-500 cursor-pointer' onClick={handleClearDrawing}>
+                                <img src="./trash-solid.svg" alt="clear button" className='h-6 w-6 mx-auto' />
+                            </button>
+                        </div>
                     </div>
 
                     <div ref={sketchRef} className='md:order-2 border shadow-md'></div>

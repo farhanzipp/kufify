@@ -33,7 +33,7 @@ const Navbar = ( {newDrawingFunc , saveImageFunc, clearDrawingFunc }) => {
                                         Download Image
                                     </a>
                                 </li>
-                                <li>
+                                <li className='md:hidden'>
                                     <a 
                                         href='#'
                                         onClick={clearDrawingFunc}

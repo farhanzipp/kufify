@@ -11,7 +11,7 @@ import Footer from './components/Footer';
 const App = () => {
     const sketchRef = useRef();
 
-    let canvasWidthRef = useRef(550);
+    let canvasWidthRef = useRef(350);
     let [pixelLength, setPixelLength] = useState(19);
     // const penSizeRef = useRef(1);
     const penTipRef = useRef("default");

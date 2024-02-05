@@ -20,7 +20,9 @@ const App = () => {
     const penTipRef = useRef("default");
     const colorRef = useRef("#333333");
     const backgroundRef = useRef("background1");
-    
+    let canvasWidth;
+    let pixelSize;
+
     let downloadImgFn;
     let clearDrawingFn;
     let undoFn;
@@ -32,12 +34,13 @@ const App = () => {
         p.resizeCanvas(newCanvasWidth, newCanvasWidth);
     };
 
-    
+    const calculateCanvasWidth = () => {
+        pixelSize = Math.floor(canvasWidthRef.current / pixelLength);
+        canvasWidth = pixelSize * pixelLength;
+    };
 
     const Sketch = (p) => {
-        let canvasWidth = canvasWidthRef.current;
-        let pixelSize = Math.floor(canvasWidth / pixelLength);
-        canvasWidth = pixelSize * pixelLength;
+        calculateCanvasWidth();
 
         let backgroundLayer;
         let drawingLayer;
@@ -220,7 +223,7 @@ const App = () => {
             />
             <div className='mx-auto flex flex-col md:w-4/5 lg:w-3/5 xl:w-2/5'>
                 <div className='mx-auto flex flex-col gap-3 justify-center items-center md:flex-row md:gap-7 md:items-start'>
-                    <div className='flex gap-2 mb-3 mx-2 bg-white rounded-md shadow-md md:order-3 md:flex-col'>
+                    <div className='flex gap-2 mb-3 mx-2 bg-white rounded-md shadow-md md:order-3 md:mx-0 md:flex-col'>
                         <ColorPicker setColorRef={colorRef} />
                         <div className='py-4'>
                             <select onChange={handleBgChange} className='font-semibold cursor-pointer outline-none'>

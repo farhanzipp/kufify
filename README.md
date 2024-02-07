@@ -71,7 +71,7 @@ Of course, some basic features not available right now. So I'll be adding more i
 - [![React][React.js]][React-url]
 - [![Tailwind][Tailwind.css]][Tailwind-url]
 - [![Vite][Vite.js]][Vite-url]
-- [P5.js][P5-url]
+- [![P5][P5.js]][P5-url]
 
 <!-- GETTING STARTED -->
 
@@ -132,7 +132,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 ## Contact
 
-Farhan Aji Pratama - [@farhanzip](https://twitter.com/your_username) - farhanaji317@gmail.com
+Farhan Aji Pratama - [@farhanzip](https://twitter.com/farhanzip) - farhanzip.netlify.app
 
 Project Link: [https://github.com/farhanzipp/kufify](https://github.com/farhanzipp/kufify)
 
@@ -159,4 +159,5 @@ Project Link: [https://github.com/farhanzipp/kufify](https://github.com/farhanzi
 [Tailwind-url]: https://tailwindcss.com/
 [Vite.js]: https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white
 [Vite-url]: https://vitejs.dev
+[P5.js]: https://img.shields.io/badge/p5.js-ED225D?style=for-the-badge&logo=p5.js&logoColor=FFFFFF
 [P5-url]: https://p5js.org/

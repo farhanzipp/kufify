@@ -1,4 +1,3 @@
-
 <a name="readme-top"></a>
 
 <!-- [![Contributors][contributors-shield]][contributors-url]
@@ -8,7 +7,6 @@
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url] -->
 
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -17,16 +15,16 @@
   </a>
 
   <h3 align="center">KUFIfy</h3>
-
-  <p align="center">
+    <p>
     A pixel art editor specialized for kufi arts
-
-    <!-- <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    </p>
+  <!-- <p align="center">
+    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
     ·
     <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a> -->
-  </p>
+    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+  </p> -->
 </div>
 
 <!-- TABLE OF CONTENTS -->
@@ -52,8 +50,8 @@
   </ol>
 </details>
 
-
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
 [![Kufify][kufify-screenshot]](https://kufify.netlify.app)
@@ -61,22 +59,22 @@
 There are many great pixel art editor available. But, When I want to make kufi art, there are some elements not available to fulfill my needs, like "ء" sign etc. So I created this simple responsive app to solve that.
 
 Here some feature I proud about it:
-* Kufi style generator that will convert your arabic letter input into basic kufi style
-* Various background guide
-* Simple and responsive design applied
+
+- Kufi style generator that will convert your arabic letter input into basic kufi style
+- Various background guide
+- Simple and responsive design applied
 
 Of course, some basic features not available right now. So I'll be adding more in the future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to my mini project.
 
-
-
 ### Built With
 
-* [![React][React.js]][React-url]
-* [![Tailwind][Tailwind.css]][Tailwind-url]
-* [Vite][Vite-url]
-* [P5.js][P5-url]
+- [![React][React.js]][React-url]
+- [![Tailwind][Tailwind.css]][Tailwind-url]
+- [Vite][Vite-url]
+- [P5.js][P5-url]
 
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
 ### Installation
@@ -97,10 +95,11 @@ Of course, some basic features not available right now. So I'll be adding more i
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ROADMAP -->
+
 ## Roadmap
 
 - [x] Changeable guide layer
-- [x] Undo Redo 
+- [x] Undo Redo
 - [x] Kufi Basic Generator
 - [ ] Color Picker
 - [ ] SVG export
@@ -112,6 +111,7 @@ See the [open issues](https://github.com/farhanzipp/kufify/issues) for a full li
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTRIBUTING -->
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -127,12 +127,14 @@ Don't forget to give the project a star! Thanks again!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
 <!-- LICENSE -->
+
 ## License
+
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <!-- CONTACT -->
+
 ## Contact
 
 Farhan Aji Pratama - [@farhanzip](https://twitter.com/your_username) - farhanaji317@gmail.com
@@ -143,6 +145,7 @@ Project Link: [https://github.com/farhanzipp/kufify](https://github.com/farhanzi
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
 [contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
 [contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
@@ -157,8 +160,6 @@ Project Link: [https://github.com/farhanzipp/kufify](https://github.com/farhanzi
 [kufify-screenshot]: images/kufify-mockup.png
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
-[Tailwind.css]:https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white
-[Tailwind-url]:https://tailwindcss.com/
-[P5-url]:https://p5js.org/
-
-
+[Tailwind.css]: https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white
+[Tailwind-url]: https://tailwindcss.com/
+[P5-url]: https://p5js.org/

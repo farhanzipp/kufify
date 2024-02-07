@@ -8,9 +8,8 @@
 [![LinkedIn][linkedin-shield]][linkedin-url] -->
 
 <!-- PROJECT LOGO -->
-<br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
+  <a href="https://github.com/farhanzipp/kufify">
     <img src="images/kufify.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -27,6 +26,7 @@
   </p> -->
 </div>
 
+[![Kufify][kufify-screenshot]](https://kufify.netlify.app)
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
@@ -52,9 +52,9 @@
 
 <!-- ABOUT THE PROJECT -->
 
+
 ## About The Project
 
-[![Kufify][kufify-screenshot]](https://kufify.netlify.app)
 
 There are many great pixel art editor available. But, When I want to make kufi art, there are some elements not available to fulfill my needs, like "ء" sign etc. So I created this simple responsive app to solve that.
 

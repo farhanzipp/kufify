@@ -70,7 +70,7 @@ Of course, some basic features not available right now. So I'll be adding more i
 
 - [![React][React.js]][React-url]
 - [![Tailwind][Tailwind.css]][Tailwind-url]
-- [Vite][Vite-url]
+- [![Vite][Vite.js]][Vite-url]
 - [P5.js][P5-url]
 
 <!-- GETTING STARTED -->
@@ -92,8 +92,6 @@ Of course, some basic features not available right now. So I'll be adding more i
    npm  start
    ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- ROADMAP -->
 
 ## Roadmap
@@ -107,8 +105,6 @@ Of course, some basic features not available right now. So I'll be adding more i
 - [ ] Fill tools
 
 See the [open issues](https://github.com/farhanzipp/kufify/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTRIBUTING -->
 
@@ -125,7 +121,6 @@ Don't forget to give the project a star! Thanks again!
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- LICENSE -->
 
@@ -162,4 +157,6 @@ Project Link: [https://github.com/farhanzipp/kufify](https://github.com/farhanzi
 [React-url]: https://reactjs.org/
 [Tailwind.css]: https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white
 [Tailwind-url]: https://tailwindcss.com/
+[Vite.js]: https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white
+[Vite-url]: https://vitejs.dev
 [P5-url]: https://p5js.org/

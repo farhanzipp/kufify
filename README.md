@@ -5,8 +5,8 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url] -->
-[![LinkedIn][linkedin-shield]][linkedin-url]
+[![MIT License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url] -->
 
 
 <!-- PROJECT LOGO -->
@@ -19,9 +19,8 @@
   <h3 align="center">KUFIfy</h3>
 
   <p align="center">
-    A pixel art editor specialized for making kufi arts
-    <br />
-    <br />
+    A pixel art editor specialized for kufi arts
+
     <!-- <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
     ·
     <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
@@ -29,7 +28,6 @@
     <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a> -->
   </p>
 </div>
-
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -55,7 +53,6 @@
 </details>
 
 
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
@@ -70,19 +67,14 @@ Here some feature I proud about it:
 
 Of course, some basic features not available right now. So I'll be adding more in the future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to my mini project.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 ### Built With
 
 * [![React][React.js]][React-url]
-* [![Vite][Vite.com]][Vite-url]
 * [![Tailwind][Tailwind.css]][Tailwind-url]
-* [![P5.js]][P5-url]
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
+* [Vite][Vite-url]
+* [P5.js][P5-url]
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -136,20 +128,14 @@ Don't forget to give the project a star! Thanks again!
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
 <!-- LICENSE -->
 ## License
-
 Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- CONTACT -->
 ## Contact
 
-Farhan Aji Pratama - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Farhan Aji Pratama - [@farhanzip](https://twitter.com/your_username) - farhanaji317@gmail.com
 
 Project Link: [https://github.com/farhanzipp/kufify](https://github.com/farhanzipp/kufify)
 
